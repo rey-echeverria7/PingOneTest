@@ -1,0 +1,6 @@
+@PingOneTest_HostAddress = http://localhost:5115
+
+GET {{PingOneTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

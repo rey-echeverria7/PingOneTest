@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(options =>
     options.SaveTokens = true;
     options.ClientSecret = "Kfrjfuve96yumDowC2wdoP_PJz1w.R6DjQjzFKKfwWXEgSDkYi.kR~_qq15G2bqE";
     options.Scope.Add("c88fb314-c75e-401d-ae10-91fd860ccfc2");
-    options.CallbackPath = new PathString("/callback");
+    options.CallbackPath = new PathString("/api/account/login-callback");
     options.SignedOutCallbackPath = new PathString("/signout-ping-one");
 });
 

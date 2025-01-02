@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace PingOneTest.Controllers
 {
@@ -7,12 +8,18 @@ namespace PingOneTest.Controllers
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
+        private readonly ILogger<AccountController> _logger;
+
+        public AccountController(ILogger<AccountController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet("login")]
         public IActionResult Login()
         {
-            //var redirectUrl = Url.Action(nameof(LoginCallback), "Account");
-            //var redirectUrl = $"{HttpContext.Request.Scheme}://localhost:5115/api/account/login-callback";
             var redirectUrl = "http://localhost:4200/callback";
+            _logger.LogInformation("Redirect URL: {RedirectUrl}", redirectUrl);
             var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
             return Challenge(properties, "OpenIdConnect");
         }
